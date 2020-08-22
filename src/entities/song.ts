@@ -1,5 +1,10 @@
+import cuid from 'cuid'
+
 export default function buildMakeSong({ }) {
-    return function makeSong({} = {}) {
+    return function makeSong({
+        name = '',
+        id = cuid.slug()
+    } = {}) {
         // if (!Id.isValidId(id)) {
         //     throw new Error('Comment must have a valid id.')
         // }
@@ -7,9 +12,9 @@ export default function buildMakeSong({ }) {
         //     throw new Error('Comment must have an author.')
         // }
         return Object.freeze({
-            getName: () => 'test',
-            getId: () => 1
+            getName: (): string => name,
+            getId: (): string => id
         })
-      
+
     }
 }
