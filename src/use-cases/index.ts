@@ -1,7 +1,7 @@
-import makeCreatSong from './create-song';
+import makeCreateSong from './create-song';
 import songsDb from '../data-access';
 
-const createSong = makeCreatSong({ songsDb })
+const createSong = makeCreateSong({ songsDb })
 
 const songService: any = Object.freeze({
     createSong

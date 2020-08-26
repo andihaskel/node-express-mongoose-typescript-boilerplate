@@ -1,5 +1,5 @@
-export default function makePostComment ({ createSong }: any) {
-    return async function postComment (httpRequest: any) {
+export default function makePostSong({ createSong }: any) {
+  return async function postSong(httpRequest: any): Promise<any> {
       try {
         const { source = {}, ...songInfo } = httpRequest.body
         source.ip = httpRequest.ip
@@ -22,7 +22,6 @@ export default function makePostComment ({ createSong }: any) {
       } catch (e) {
         // TODO: Error logging
         console.log(e)
-  
         return {
           headers: {
             'Content-Type': 'application/json'
@@ -33,6 +32,5 @@ export default function makePostComment ({ createSong }: any) {
           }
         }
       }
-    }
   }
-  
+}

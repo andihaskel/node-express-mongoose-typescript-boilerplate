@@ -2,16 +2,19 @@ import {
     createSong
   } from '../use-cases'
   import makePostSong from './post-song'
+  import hola from './hola'
   import notFound from './not-found'
   
 
-  const postSong: any = makePostSong({ createSong })
-  
-  const commentController = Object.freeze({
+  const postSong = makePostSong({ createSong });
+  const hola2 = hola();
+
+  const songController = Object.freeze({
     postSong,
-    notFound
+    notFound,
+    hola2
   })
   
-  export default commentController
-  export { postSong, notFound }
+  export default songController
+  export { postSong, notFound, hola2 }
   

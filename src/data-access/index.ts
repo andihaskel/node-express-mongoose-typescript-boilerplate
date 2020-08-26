@@ -14,4 +14,5 @@ export async function makeDb () {
 }
 
 const songsLockDb = makeSongsLockDb({ makeDb })
+
 export default songsLockDb

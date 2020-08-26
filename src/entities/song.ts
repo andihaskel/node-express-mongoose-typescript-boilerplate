@@ -1,8 +1,8 @@
-import cuid from 'cuid'
 
-export default function buildMakeSong({ }) {
+
+export default function buildMakeSong({ cuid }: any) {
     return function makeSong({
-        name = '',
+        name = 'a',
         id = cuid.slug()
     } = {}) {
         // if (!Id.isValidId(id)) {
