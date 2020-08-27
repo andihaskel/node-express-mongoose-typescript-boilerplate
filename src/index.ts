@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 
 import indexRouter from './routes/index';
+import * as dotenv from 'dotenv';
 
 
 const app: Application = express();
@@ -14,6 +15,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+dotenv.config();
 
 app.use('/', indexRouter);
 // app.use('/users', usersRouter);

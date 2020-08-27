@@ -1,6 +1,6 @@
 import cuid from "cuid"
 
-export default function makeCommentsDb ({ makeDb }: any) {
+export default function makeSongsLockDb ({ makeDb }: any) {
   return Object.freeze({
     findAll,
     findByHash,
@@ -13,7 +13,7 @@ export default function makeCommentsDb ({ makeDb }: any) {
   async function findAll ({ publishedOnly = true } = {}) {
     const db = await makeDb()
     const query = publishedOnly ? { published: true } : {}
-    const result = await db.collection('commesongsnts').find(query)
+    const result = await db.collection('songs').find(query)
     return (await result.toArray()).map(({ _id: id, ...found }: any) => ({
       id,
       ...found
@@ -35,7 +35,7 @@ export default function makeCommentsDb ({ makeDb }: any) {
     // if (omitReplies) {
     //   query.replyToId = null
     // }
-    const result = await db.collection('comments').find(query)
+    const result = await db.collection('songs').find(query)
     return (await result.toArray()).map(({ _id: id, ...found }: any) => ({
       id,
       ...found
