@@ -13,7 +13,6 @@ const makeExpressCallback = (controller: any) => {
           'User-Agent': req.get('User-Agent')
         }
       }
-      console.log(controller)
       controller(httpRequest)
         .then((httpResponse: { headers: any; statusCode: any; body: any }) => {
           if (httpResponse.headers) {

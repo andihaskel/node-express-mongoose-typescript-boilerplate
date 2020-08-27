@@ -13,7 +13,6 @@ dotenv.config()
       { key: { postId: -1 }, name: 'postId_idx' },
       { key: { replyToId: -1 }, name: 'replyToId_idx' }
     ])
-  console.log(result)
   console.log('Database setup complete...')
   process.exit()
 })()
