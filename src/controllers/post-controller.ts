@@ -10,7 +10,7 @@ export default function makePostController({ postUseCase }: any) {
         const posted = await postUseCase({
           ...songInfo,
           source
-        })
+        }) 
         return {
           headers: {
             'Content-Type': 'application/json',
