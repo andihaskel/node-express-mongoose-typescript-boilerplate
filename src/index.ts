@@ -18,7 +18,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 dotenv.config();
 
 app.use('/', indexRouter);
-// app.use('/users', usersRouter);
 
   // listen for requests
   app.listen(3000, () => {

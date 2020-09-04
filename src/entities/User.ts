@@ -1,7 +1,9 @@
-export default function buildMakeSong({ cuid }: any) {
-    return function makeSong({
-        name = 'a',
-        id = cuid.slug()
+export default function buildMakeUser({ cuid }: any) {
+    return function makeUser({
+        name = '',
+        id = cuid.slug(),
+        password = '',
+        email = ''
     } = {}) {
         // if (!Id.isValidId(id)) {
         //     throw new Error('Comment must have a valid id.')
@@ -11,7 +13,9 @@ export default function buildMakeSong({ cuid }: any) {
         // }
         return Object.freeze({
             getName: (): string => name,
-            getId: (): string => id
+            getId: (): string => id,
+            getPassword: (): String => password,
+            email: (): String => email
         })
 
     }

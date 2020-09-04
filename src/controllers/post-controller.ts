@@ -1,13 +1,13 @@
-export default function makePostSong({ createSong }: any) {
-  return async function postSong(httpRequest: any): Promise<any> {
+export default function makePostController({ postUseCase }: any) {
+  return async function controller(httpRequest: any): Promise<any> {
       try {
         const { source = {}, ...songInfo } = httpRequest.body
         source.ip = httpRequest.ip
         source.browser = httpRequest.headers['User-Agent']
-        if (httpRequest.headers['Referer']) {
-          source.referrer = httpRequest.headers['Referer']
+        if (httpRequest.headers.Referer) {
+          source.referrer = httpRequest.headers.Referer
         }
-        const posted = await createSong({
+        const posted = await postUseCase({
           ...songInfo,
           source
         })

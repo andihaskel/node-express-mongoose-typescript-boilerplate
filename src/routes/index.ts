@@ -1,11 +1,10 @@
 import express from 'express';
 var router = express.Router();
-import {postSong} from '../controllers';
 import makeCallback from '../express-callback';
-import hola2 from '../controllers';
+import userRoutes from './usersRoutes';
+import songsRoutes from './songsRoutes';
 
-
-
-router.get('/', makeCallback(postSong));
+userRoutes(router, { makeCallback });
+songsRoutes(router, { makeCallback });
 
 export default router;

@@ -5,17 +5,15 @@ export default function makeSongsLockDb ({ makeDb }: any) {
     findAll,
     findByHash,
     findById,
-    findBySongId,
     insert,
     remove,
     update
   })
   async function findAll ({ publishedOnly = true } = {}) {
     const db = await makeDb()
-    const query = publishedOnly ? { published: true } : {}
-    const result = await db.collection('songs').find(query)
+    const result = await db.collection('songs').find()
     return (await result.toArray()).map(({ _id: id, ...found }: any) => ({
-      id,
+      id, 
       ...found
     }))
   }
@@ -29,33 +27,21 @@ export default function makeSongsLockDb ({ makeDb }: any) {
     const { _id: id, ...info } = found[0]
     return { id, ...info }
   }
-  async function findBySongId ({ songId, omitReplies = true }: any) {
-    const db = await makeDb()
-    const query = { songId: songId }
-    // if (omitReplies) {
-    //   query.replyToId = null
-    // }
-    const result = await db.collection('songs').find(query)
-    return (await result.toArray()).map(({ _id: id, ...found }: any) => ({
-      id,
-      ...found
-    }))
-  }
-  async function insert ({ id: _id = cuid.slug(), ...commentInfo }: any) {
+  async function insert ({ id: _id = cuid.slug(), ...songInfo }: any) {
     const db = await makeDb()
     const result = await db
       .collection('songs')
-      .insertOne({ _id, ...commentInfo })
+      .insertOne({ _id, ...songInfo })
     const { _id: id, ...insertedInfo } = result.ops[0]
     return { id, ...insertedInfo }
   }
 
-  async function update ({ id: _id, ...commentInfo }: any) {
+  async function update ({ id: _id, ...songInfo }: any) {
     const db = await makeDb()
     const result = await db
       .collection('songs')
-      .updateOne({ _id }, { $set: { ...commentInfo } })
-    return result.modifiedCount > 0 ? { id: _id, ...commentInfo } : null
+      .updateOne({ _id }, { $set: { ...songInfo } })
+    return result.modifiedCount > 0 ? { id: _id, ...songInfo } : null
   }
   async function remove ({ id: _id }: any) {
     const db = await makeDb()

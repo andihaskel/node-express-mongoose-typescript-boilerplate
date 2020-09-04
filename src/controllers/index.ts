@@ -1,20 +1,20 @@
 import {
-    createSong
+    createSong,
+    createUser
   } from '../use-cases'
-  import makePostSong from './post-song'
-  import hola from './hola'
+  import makePostController from './post-controller'
   import notFound from './not-found'
   
 
-  const postSong = makePostSong({ createSong });
-  const hola2 = hola();
+  const postSong = makePostController({ createSong });
+  const registerUser = makePostController({ createUser });
 
   const songController = Object.freeze({
     postSong,
     notFound,
-    hola2
+    registerUser
   })
   
   export default songController
-  export { postSong, notFound, hola2 }
+  export { postSong, notFound, registerUser }
   
